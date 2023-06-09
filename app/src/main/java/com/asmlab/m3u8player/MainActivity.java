@@ -9,12 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 public class MainActivity extends AppCompatActivity {
 
     Button playBtn;
     EditText input;
 
     String link;
+
+    AdView mAdView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,22 @@ public class MainActivity extends AppCompatActivity {
 
         playBtn = findViewById(R.id.play);
         input = findViewById(R.id.inputText);
+        mAdView  = findViewById(R.id.adView);
+
+        //----------------------------------------------------------------------------------
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+        //-----------------------------------------------------------------------------------
+
+
 
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
