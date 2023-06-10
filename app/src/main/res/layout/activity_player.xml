@@ -19,6 +19,7 @@
         app:use_controller="true"
         app:show_buffering="always"
         android:keepScreenOn="true"
+
         />
 
 </LinearLayout>

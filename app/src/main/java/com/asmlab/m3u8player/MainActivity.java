@@ -2,6 +2,9 @@ package com.asmlab.m3u8player;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +21,14 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 public class MainActivity extends AppCompatActivity {
 
-    Button playBtn;
+    Button playBtn,clearBtn,pasteBtn;
     EditText input;
 
     String link;
 
     AdView mAdView ;
+
+    ClipboardManager clipboardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         playBtn = findViewById(R.id.play);
+        clearBtn = findViewById(R.id.clear);
+        pasteBtn = findViewById(R.id.paste);
+
+        clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
         input = findViewById(R.id.inputText);
         mAdView  = findViewById(R.id.adView);
 
@@ -66,6 +76,38 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,
                             "Please enter a Link", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                link = input.getText().toString().trim();
+                if(link.length()>0){
+                    input.setText("");
+                    Toast.makeText(MainActivity.this,
+                            "Cleared", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(MainActivity.this,
+                            "Nothing to clear", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+        pasteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+                String data = item.getText().toString().trim();
+                if(data.length()>0){
+                    input.setText(item.getText().toString());
+                }
+                else {
+                    Toast.makeText(MainActivity.this,
+                            "Nothing to paste", Toast.LENGTH_LONG).show();
+                }
+
+
             }
         });
     }

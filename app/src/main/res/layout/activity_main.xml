@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Enter your M3U8 link here"
+        android:text="Enter your .m3u8 link here"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/inputText"
@@ -31,14 +31,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="example : simple.m3u8"
-        android:textColor="#A1A1A1"
         android:layout_marginTop="10dp"
+        android:text="example : sample.m3u8"
+        android:textColor="#A1A1A1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please make sure you have a working m3u8 link"
+        android:textColor="#A1A1A1"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/inputText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/inputText"
@@ -60,6 +73,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear text"
+        android:backgroundTint="#5D6395"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/play"
+        app:layout_constraintStart_toStartOf="@+id/inputText"
+        app:layout_constraintTop_toBottomOf="@+id/inputText" />
+
+    <Button
+        android:id="@+id/paste"
+        android:backgroundTint="#5D6395"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="One click Paste"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/play"
+        app:layout_constraintEnd_toEndOf="@+id/inputText"
+        app:layout_constraintTop_toBottomOf="@+id/inputText" />
 
     <Button
         android:id="@+id/play"
